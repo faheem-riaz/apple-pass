@@ -30,7 +30,12 @@ html = f"""
 async def root():
     return HTMLResponse(html)
 
-@app.post('/apple-pass')
+@app.post('/apple-pass/v1/devices/{device_library_identifier}/registrations/{pass_type_identifier}/{serial_number}/')
 async def hello():
     print(time())
     return {'res': 'pong', 'version': __version__, "time": time()}
+
+@app.post('/apple-pass/v1/log/')
+async def log():
+    print("logs")
+    return {'data': 'awesome'}
