@@ -30,7 +30,7 @@ html = f"""
 async def root():
     return HTMLResponse(html)
 
-@app.get('/apple-pass')
+@app.post('/apple-pass')
 async def hello():
     print(time())
     return {'res': 'pong', 'version': __version__, "time": time()}
