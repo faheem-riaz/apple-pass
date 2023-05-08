@@ -2,6 +2,7 @@ from typing import List
 from fastapi import FastAPI
 from pydantic import BaseModel
 from datetime import datetime
+from typing import Optional
 
 class DevicesPayload(BaseModel):
     pushToken:str
@@ -19,15 +20,10 @@ async def register(device_library_identifier:str,pass_type_identifier:str,serial
     return {'device_library_identifier': device_library_identifier, 'pass_type_identifier': pass_type_identifier, "serial_number": serial_number}
 
 
-@app.get('/apple-pass/v1/devices/{device_library_identifier}/registrations/{pass_type_identifier}')
-async def getSerialNumber(device_library_identifier:str,pass_type_identifier:str):
-    print("serial number")
-    return {"serial_number":"this is serial number"}
 
 @app.get('/apple-pass/v1/devices/{device_library_identifier}/registrations/{pass_type_identifier}')
-async def getSerialNumber(device_library_identifier:str,pass_type_identifier:str,passesUpdatedSince:str):
+async def getSerialNumber(device_library_identifier:str,pass_type_identifier:str,passesUpdatedSince:Optional[str] = None):
     print("pass update since",passesUpdatedSince)
-
     return {"lastUpdated": datetime.now,"serialNumbers":["E5982H-I2",]}
 
 
