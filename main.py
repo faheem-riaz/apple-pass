@@ -23,8 +23,10 @@ async def register(device_library_identifier:str,pass_type_identifier:str,serial
 
 @app.get('/apple-pass/v1/devices/{device_library_identifier}/registrations/{pass_type_identifier}')
 async def getSerialNumber(device_library_identifier:str,pass_type_identifier:str,passesUpdatedSince:Optional[str] = None):
-    print("pass update since",passesUpdatedSince)
-    return {"lastUpdated": datetime.now,"serialNumbers":["E5982H-I2",]}
+    current_time = datetime.now()
+    print("pass update since",current_time)
+    
+    return {"lastUpdated":current_time,"serialNumbers":["E5982H-I2",]}
 
 
 @app.post('/apple-pass/v1/log')
