@@ -26,6 +26,9 @@ async def register(device_library_identifier:str,pass_type_identifier:str,serial
 async def getSerialNumber(device_library_identifier:str,pass_type_identifier:str,passesUpdatedSince:Optional[str] = None):
     current_time = datetime.utcnow()
     print("pass update since",passesUpdatedSince)
+    if(passesUpdatedSince == None):
+        print("Pass Updated since is not present")
+    
     return {"lastUpdated":current_time,"serialNumbers":["E5982H-I2",]}
 
 
